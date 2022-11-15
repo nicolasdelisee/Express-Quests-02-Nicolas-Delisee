@@ -33,9 +33,8 @@ const postMovie = (req, res) => {
   const {title, director, year, color, duration} = req.body;
 
   database
-    .query("INSERT INTO movies(title, director, year, color, duration) VALUES (?, ?, ?, ?, ?", [title, director, year, color, duration])
+    .query("INSERT INTO movies(title, director, year, color, duration) VALUES (?, ?, ?, ?, ?)", [title, director, year, color, duration])
     .then(([result]) => {
-      console.log(result.insertId);
       res.location(`/api/movies/${result.insertId}`).sendStatus(201);
     })
     .catch((err) => {
